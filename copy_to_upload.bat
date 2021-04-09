@@ -1,1 +1,1 @@
-@copy dist\LeveListV2* E:\GBF\js /a
+@copy dist\Calendar* E:\GBF\js /a
