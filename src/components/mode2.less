@@ -1,0 +1,64 @@
+@cell-width: 150px;
+@cell-height: 40px;
+@color-border: #000;
+@color-background: #fdfaf5;
+
+.gbf-calendar{
+    width: @cell-width * 7 + 8px;
+    background: @color-background;
+
+    * {
+        box-sizing: content-box;
+    }
+} 
+
+.month-title{
+    height: @cell-height;
+    line-height: @cell-height;
+    border: 1px solid @color-border;
+    text-align: center;
+    cursor: pointer;
+}
+
+.week-row {
+    position: relative;
+
+    .days-row {
+        display: flex;
+    
+        >div {
+            width: @cell-width;
+            text-align: center;
+            height: @cell-height;
+            line-height: @cell-height;
+            border-style: solid;
+            border-color: @color-border;
+            border-width: 0 0 1px 1px;
+            cursor: pointer;
+            
+            &.has-event {
+                background: #ff8383;
+            }
+
+            &:last-child{
+                border-right-width: 1px;
+            }
+
+            &.disable{
+                cursor: auto;
+            }
+        }
+    }
+
+    .detail {
+        position: absolute;
+        top: calc(100% - 1px);
+        left: 0;
+        width: calc(100% - 2px);
+        height: @cell-height + 2px;
+        background: @color-background;
+        border: 1px solid @color-border;
+        z-index: 10;
+    }
+}
+
