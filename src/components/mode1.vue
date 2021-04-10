@@ -3,7 +3,7 @@
         <div class="month-title" @mousedown.prevent.stop="change_month()">{{show_month.year}}年{{show_month.month + 1}}月</div>
         <div class="week-row" v-for="(week, i) in all_week" :key="i">
         <div class="days-row">
-            <div v-for="(day, j) in week" :key="i+'-'+j" :class="{ 'has-event': is_has_event_start(day), 'disable': day == -1 }" @mousedown.prevent.stop="toggle_detail(i, day)"><template v-if="day > -1">{{day}}</template></div>
+            <div v-for="(day, j) in week" :key="i+'-'+j" :class="{ 'has-event': is_has_event_start(day), 'disable': day == -1 }" @mousedown.prevent.stop="toggle_detail(i, day)"><template v-if="day.getMonth() == current_month">{{day.getDate()}}</template></div>
         </div>
         <div class="detail" v-if="detail_show_week == i" v-html="detail_content"></div>
         </div>
@@ -53,27 +53,27 @@ export default class CalendarMode1 extends Vue {
   }
 
   // 判断这一天是否有活动开始
-  is_has_event_start(day: number){
-    if (day < 0){ return false; }
-    return eventStartInDay(this.calendar_data, this.show_month.year, this.show_month.month, day).length > 0;
+  is_has_event_start(day: Date){
+    if (day.getMonth() != this.current_month){ return false; }
+    return eventStartInDay(this.calendar_data, day).length > 0;
   }
 
   // 切换详情显示
-  toggle_detail(week: number, day: number){
+  toggle_detail(week: number, day: Date){
     // if (!(event.target as HTMLElement).classList.contains('has-event')){
     //   return;
     // }
-    if (day == -1){
+    if (day.getMonth() != this.current_month){
       return;
     }
-    if (this.detail_show_week == week && this.detail_show_day == day){
+    if (this.detail_show_week == week && this.detail_show_day == day.getDate()){
       this.hide_detail();
     }else{
       this.detail_show_week = week;
-      this.detail_show_day = day;
+      this.detail_show_day = day.getDate();
       this.detail_content = (() => {
         const content = [];
-        const this_day_events = eventsInProgress(this.calendar_data, this.show_month.year, this.show_month.month, day);
+        const this_day_events = eventsInProgress(this.calendar_data, day);
         for (let i=0;i<this_day_events.length;i++){
           content.push((i+1)+'. '+this_day_events[i].title)
         }
@@ -88,4 +88,4 @@ export default class CalendarMode1 extends Vue {
 }
 </script>
 
-<style src="./mode1.less" lang="less"></style>
+<style scoped src="./mode1.less" lang="less"></style>
