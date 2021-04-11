@@ -1,6 +1,6 @@
 <template>
     <div class="gbf-calendar">
-        <div class="mpb-title month-title" @mousedown.prevent.stop="change_month()">{{show_month.year}}年{{show_month.month + 1}}月</div>
+        <div class="month-title" @mousedown.prevent.stop="change_month()">{{show_month.year}}年{{show_month.month + 1}}月</div>
         <div class="week-row">
           <div class="days-row title">
             <div v-for="name in week_index_text" :key="name.n" :class="name.c">
@@ -12,7 +12,12 @@
           <div class="days-row">
               <div v-for="(day, j) in week"
               :key="i+'-'+j"
-              :class="{ 'has-event': is_has_event_start(day), 'disable': show_month.month != day.getMonth(), 'selected': (detail_show_week == i && detail_show_day == day.getDate()) }"
+              :class="{
+                  'has-event': is_has_event_start(day),
+                  'disable': show_month.month != day.getMonth(),
+                  'selected': (detail_show_week == i && detail_show_day == day.getDate()),
+                  'today': isSameDay(day),
+                }"
               @mouseenter="hover_detail(i, day)"
               @mouseleave="hide_detail()"
               @mousedown.prevent.stop="toggle_detail(i, day)">
