@@ -49,7 +49,7 @@ export function eventsInProgress(calendar_data: Array<any>, date_day: Date){
   return calendar_data.filter((ev) => {
     date_day.setHours(0, 0, 0);
     const time_start = (new Date(ev.start.getTime())).setHours(0, 0, 0);
-    if (!ev.end){
+    if (isNaN(ev.end.getTime())){
       // 没有结束时间，判断日期与任意活动的开始时期是否相同
       return time_start == date_day.getTime();
     }else{

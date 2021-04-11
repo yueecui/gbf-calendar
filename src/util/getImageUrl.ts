@@ -240,7 +240,7 @@ export function getImageUrl(filename: string | number){
     }
     if (typeof(mw) == "undefined"){
       const hex = md5(filename);
-      return ['/ff14/uploads', hex[0], hex[0] + hex[1], filename].join('/')
+      return ['/gbf/uploads', hex[0], hex[0] + hex[1], filename].join('/')
     }else{
         const hex = md5(filename);
         return ['https://huiji-public.huijistatic.com', mw.config.get('wgHuijiPrefix'), 'uploads', hex[0], hex[0] + hex[1], filename].join('/')

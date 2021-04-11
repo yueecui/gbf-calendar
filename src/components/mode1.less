@@ -47,6 +47,18 @@
             &.disable{
                 cursor: auto;
             }
+
+            &.selected{
+                box-shadow: 0 1px #000 inset, 0 -1px #000 inset, 1px 0 #000 inset, -1px 0 #000 inset;
+            }
+        }
+    }
+
+    .days-row.title {
+        >div {
+            height: @cell-height/3*2;
+            line-height: @cell-height/3*2;
+            cursor: auto;
         }
     }
 
@@ -55,10 +67,41 @@
         top: calc(100% - 1px);
         left: 0;
         width: calc(100% - 2px);
-        min-height: @cell-height + 2px;
+        // min-height: @cell-height + 2px;
         background: @color-background;
         border: 1px solid @color-border;
         z-index: 10;
+
+        >div {
+            padding: 0.4em 0.5em 0.3em;
+        }
+
+        .detail-row {
+            position: relative;
+            padding-left: 1.5em;
+
+            .index {
+                position: absolute;
+                width: 1em;
+                text-align: center;
+                top: 0;
+                left: 0;
+            }
+
+            .title.today {
+                font-weight: bold;
+            }
+
+            .time-range {
+                font-size: 90%;
+                color: blue;
+                .time {
+                    font-size: 85%;
+                    color: grey;
+                    margin-left: .3em;
+                }
+            }
+        }
     }
 }
 
