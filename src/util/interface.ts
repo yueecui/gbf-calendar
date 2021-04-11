@@ -12,6 +12,7 @@ export interface eventData{
     category: string;
     start: Date;
     end?: Date;
+    link?: string;
 }
 
 export interface eventDataShow extends eventData{

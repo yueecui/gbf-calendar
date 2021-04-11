@@ -1,5 +1,5 @@
-@app-width: 828px;
-@row-padding: @app-width/828*15;
+@app-width: 100%;
+@row-padding: 1.8115942029%;
 @cell-width: (@app-width - @row-padding *2) / 7;
 @color-text: #e6e3d9;
 @color-background: #222222;
@@ -11,10 +11,12 @@
     color: @color-text;
     background: @color-background;
     font-size: @size-date-text;
+    position: relative;
+    overflow: hidden;
 } 
 
 .week-row {
-    position: relative;
+    // position: relative;
 
     &:not(:first-child){
         border-top: 2px solid #464544;
@@ -30,6 +32,7 @@
     >div {
         width: @cell-width;
         text-align: center;
+        position: relative;
 
         &.gary{
             color: #333;
@@ -56,7 +59,34 @@
         }
     
         .detail{
-            height: 100px;
+            padding-bottom: 114%;
+            position: relative;
+
+            >div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .star {
+                // background: url(/gbf/uploads/1/11/Evolution-star-2.png) no-repeat 0 -570px;
+                background: url(https://huiji-public.huijistatic.com/gbf/uploads/1/11/Evolution-star-2.png) no-repeat 0 -570px;
+                width: 30px;
+                height: 30px;
+                margin: 0 auto;
+            }
+        }
+
+        .interactivity {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 40px*var(--row));
+            z-index: 10;
+            cursor: pointer;
         }
     }
 
@@ -108,11 +138,19 @@
                 border-width: 8px 0 0 8px;
             }
         }
+
+        .detail{
+            padding-bottom: 100%;
+        }
     }
 }
 
 .week-row .bar-block{
     margin-top: 1px;
+
+    /deep/ a {
+        color: inherit;
+    }
     
     .bar-group {
         height: 40px;

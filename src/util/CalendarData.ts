@@ -1,4 +1,5 @@
 import { MonthInfo, eventData, eventDataShow } from './interface';
+import { CategoryMap } from './config';
 
 // 获取生成日历的array数组
 // 每行一周，数字为当日的日期，-1为不显示
@@ -108,7 +109,7 @@ export function cleanUpEventData(calendar_data: Array<eventData>, week: Array<Da
 
   // 根据分组排列输出顺序
   // 组越靠后输出位置越靠下
-  const cleanedData: Record<string, any> = {};
+  const cleanedData: Record<string, eventData[][]> = {};
   for (const category in temp_data){
     const tc_data = temp_data[category];
     const category_data = [...tc_data[0].map((ev) => {
@@ -142,12 +143,26 @@ export function cleanUpEventData(calendar_data: Array<eventData>, week: Array<Da
   }
 
   // 整合并排序数据
-  const output: eventData[] = [];
-  for (const order of ['活动', '运营']){
-    if (cleanedData[order]){
-      output.push(...(cleanedData[order].reverse()));
-    }
+  const output: eventData[][] = [];
+  // for (const order of ['活动', '运营']){
+  //   if (cleanedData[order]){
+  //     output.push(...(cleanedData[order].reverse()));
+  //   }
+  // }
+
+  for (const category in cleanedData){
+    output.push(...(cleanedData[category]));
   }
+
+  output.sort((a, b) => {
+    const a_category_sort = CategoryMap[a[0].category].sort ? CategoryMap[a[0].category].sort : 999;
+    const b_category_sort = CategoryMap[b[0].category].sort ? CategoryMap[b[0].category].sort : 999;
+    if (a_category_sort != b_category_sort){
+      return a_category_sort - b_category_sort;
+    }else{
+      return a[0].start.getTime() - b[0].start.getTime();
+    }
+  })
   
   return output;
 }

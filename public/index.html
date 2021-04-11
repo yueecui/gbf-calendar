@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <script type="text/javascript" src="local.js"></script>
+    <script type="text/javascript" src="data.js"></script>
     <link rel="stylesheet" href="gbfwiki.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css"/>        
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -23,8 +23,10 @@
                 <div id="mw-content-text" lang="zh-CN" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output" style="min-height: 1000px;">
 <!-- 以下需要复制到HTML -->
 <!-- {{=<% %>=}} -->
+  <div style="width:600px">
     <div id="app-calendar"></div>
-    <!-- built files will be auto injected -->
+  </div>
+  <!-- built files will be auto injected -->
 <!-- 以上需要复制到HTML结束 -->
                 </div></div>
               </section>

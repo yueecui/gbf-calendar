@@ -1,6 +1,6 @@
 <template>
     <div class="gbf-calendar">
-        <div class="month-title" @mousedown.prevent.stop="change_month()">{{show_month.year}}年{{show_month.month + 1}}月</div>
+        <div class="mpb-title month-title" @mousedown.prevent.stop="change_month()">{{show_month.year}}年{{show_month.month + 1}}月</div>
         <div class="week-row">
           <div class="days-row title">
             <div v-for="name in week_index_text" :key="name.n" :class="name.c">
@@ -28,7 +28,7 @@
                   <div class="index">{{e.index}}.</div>
                   <div :class="{title:true, today:e.today}" v-html="e.ev.title"></div>
                   <div class="time-range">
-                    <span class="date">{{e.start_date}}<span class="time">{{e.start_time}}</span></span>
+                    <span class="date">{{e.start_date}}<span class="time" v-if="e.start_time != '01:00'">{{e.start_time}}</span></span>
                     <template v-if="e.end_date">
                       <span>～</span>
                       <span class="date">{{e.end_date}}<span class="time">{{e.end_time}}</span></span>

@@ -35,6 +35,9 @@ export function getCalendarData(): Array<eventData>{
         // if (isNaN(ev.end!.getTime())) {
         //     ev.end = ev.start;
         // }
+        if (r_ev.link) {
+            ev.link = r_ev.link;
+        }
         calendar_data.push(ev);
     }
     return calendar_data;
@@ -85,8 +88,9 @@ function parserTitle(title: string){
         }
 
         // 链接
-        const find_a = /\[\[([^|]*?)\|([^|]*?)]]/.exec(find);
+        const find_a = /\[\[([^|]*?)\|?([^|]*?)]]/.exec(find);
         if (find_a){
+            if (find_a[1] == '') { find_a[1] = find_a[2]; }
             title = title.replaceAll(find, '<a href="/wiki/'+find_a[1]+'">'+find_a[2]+'</a>');
             continue;
         }

@@ -1,0 +1,93 @@
+.detail-layer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92.27%;
+  padding: 0 3% 3%;
+  background: #353535;
+  z-index: 15;
+
+  // 形变需要
+  transition: all 0.5s;
+  opacity: 1;
+
+  &.init > div{
+    display: none;
+  }
+
+  &__date {
+    font-size: 28px;
+    line-height: 28px;
+    margin: 1em 0;
+  }
+
+  &__content {
+    border: 0 solid #f1eee3;
+    border-width: 1px 0;
+  }
+
+  &__event {
+    padding: 0.5em 3em 0.5em 2em;
+    line-height: 1em;
+    position: relative;
+    display: block;
+    color: inherit;
+
+    /deep/ a {
+      color: inherit;
+    }
+
+    .time {
+      font-size: 75%;
+      margin-top: 0.3em;
+    }
+
+    .link {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      font-size: 40px;
+      line-height: 40px;
+      transform: translateY(-50%);
+    }
+
+    &:nth-of-type(n+2) {
+      border-top: 1px solid #444;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0.4em;
+      left: 0;
+      width: 0.6666em;
+      height: calc(100% - 0.8em);
+      border-radius: 3px;
+      content: "";
+    }
+    &.event::before {
+      background: #296088;
+    }
+    &.bonus::before {
+      background: #c18d41;
+    }
+    &.update::before {
+      background: green;
+    }
+    &.blank {
+      padding: 1em 0.5em;
+    }
+  }  
+}
+
+.close-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #000000ad;
+  z-index: 13;
+}
