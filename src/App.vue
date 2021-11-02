@@ -18,8 +18,8 @@ import Mode2 from './components/mode2.vue';
   }
 })
 export default class App extends Vue {
-  readonly version = '2';
-  readonly last_date = '2021-04-10';
+  readonly version = '3';
+  readonly last_date = '2021-11-02';
 
   get mode(){
     let mode = getData('mode');

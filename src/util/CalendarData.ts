@@ -17,7 +17,7 @@ export function getMonthAllWeek(month_info: MonthInfo, start: number): Array<Arr
     current_day += 1;
   }
   // 获取后面的周
-  while (current_day < month_info.last_day){
+  while (current_day <= month_info.last_day){
     all_week_array.push(one_week_array);
     one_week_array = [];
     for (let i=0;i<7;i++){
